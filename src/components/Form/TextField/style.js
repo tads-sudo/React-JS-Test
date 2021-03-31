@@ -39,7 +39,7 @@ export const useStyles = createUseStyles({
   },
   [`@media(min-width:${SCREEN_DESKTOP.MIN}px)`]: {
     textField: {
-      width: "30vw",
+      width: "25vw",
     },
   },
 });
