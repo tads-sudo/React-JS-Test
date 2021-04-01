@@ -10,10 +10,8 @@ export const useStyles = createUseStyles({
     textColorProps,
   }) => ({
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
     justifyContent: "center",
-    boxSizing: "border-box",
+    fontSize: "16px",
     width: button_sizes[sizeProps].width,
     color: color[textColorProps],
     backgroundColor: color[colorProps],
@@ -21,11 +19,12 @@ export const useStyles = createUseStyles({
     padding: button_sizes[sizeProps].padding,
     borderRadius: button_borders[cornerProps],
     cursor: "pointer",
-    transitionDuration: "0.1s",
     ...button_types[typeProps],
-    "&:hover": {
-      transform: "scale(1.05)",
-      transitionDuration: "0.1s",
+    "&:disabled": {
+      backgroundColor: color.GRAY,
+      borderColor: color.GRAY,
+      cursor: "not-allowed",
+      ...button_types[typeProps],
     },
   }),
 });
