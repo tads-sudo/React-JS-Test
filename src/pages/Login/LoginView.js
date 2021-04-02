@@ -1,6 +1,5 @@
 import React from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+
 import {
   Layout,
   Textfield,
@@ -10,28 +9,54 @@ import {
   Alert,
 } from "../../components";
 
-const initialValues = {
-  username: "",
-  password: "",
-};
+import { user } from "../../data";
 
-const onSubmit = (values, helpers) => {
-  if (values.username !== "myaccount" || values.password !== "123456") {
-    return helpers.setErrors({ username: "Invalid username and password" });
-  }
-  console.log("go to todo page");
-};
+import { login } from "../../redux/actions/auth";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-const LoginSchema = Yup.object({
-  username: Yup.string()
-    .required("Required Username")
-    .matches(/^[aA-zZ0-9]+$/, "Username must be alphanumeric characters only"),
-  password: Yup.string()
-    .required("Required Password")
-    .matches(/^[^&^$#]+$/, "Do not use (& ^ $ #) those in password"),
-});
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  const initialValues = {
+    username: "",
+    password: "",
+  };
+
+  const LoginSchema = Yup.object({
+    username: Yup.string()
+      .required("Required Username")
+      .matches(
+        /^[aA-zZ0-9]+$/,
+        "Username must be alphanumeric characters only"
+      ),
+    password: Yup.string()
+      .required("Required Password")
+      .matches(/^[^&^$#]+$/, "Do not use (& ^ $ #) those in password"),
+  });
+
+  const onSubmit = (values, helpers) => {
+    if (
+      values.username !== user.username ||
+      values.password !== user.password
+    ) {
+      return helpers.setErrors({ username: "Invalid username and password" });
+    }
+
+    const modifiedUser = user;
+    delete modifiedUser.password;
+    localStorage.setItem("user", JSON.stringify(modifiedUser));
+
+    dispatch(login(modifiedUser));
+
+    history.push("/todo");
+  };
+
   const {
     values,
     handleSubmit,
@@ -100,6 +125,7 @@ const Login = () => {
               </Alert>
             );
           }
+          return null;
         })}
       </Form>
     </Layout>
