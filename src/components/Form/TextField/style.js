@@ -3,7 +3,7 @@ import { color, SCREEN_TABLET, SCREEN_DESKTOP } from "../../../theme";
 
 export const useStyles = createUseStyles({
   textField: {
-    width: "70vw",
+    width: "100%",
     "& input": {
       color: color.BLACK,
       background: "rgba(255, 255, 255, 0.05)",
