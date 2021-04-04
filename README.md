@@ -1,6 +1,6 @@
 # Getting Started
 
-This was my output to your ReactJS UI Test. [ReactJS Amado Output](https://github.com/facebook/create-react-app).
+This was my output to your ReactJS UI Test. [My ReactJS UI Test Output](https://github.com/facebook/create-react-app)
 
 ## Available Scripts
 
@@ -13,4 +13,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## View Online Mode
 
-[ReactJS Amado Output](https://facebook.github.io/create-react-app/docs/getting-started).
+[My ReactJS UI Test Output](https://facebook.github.io/create-react-app/docs/getting-started)
