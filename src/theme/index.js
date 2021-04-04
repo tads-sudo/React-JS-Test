@@ -13,17 +13,29 @@ export const color = {
 };
 
 export const button_sizes = {
+  XS: {
+    padding: "4px 12px",
+    width: "none",
+  },
   SM: {
     padding: "8px 24px",
+    width: "none",
   },
   MD: {
     padding: "10px 30px",
+    width: "none",
   },
   LG: {
     padding: "12px 36px",
+    width: "none",
   },
   XL: {
     padding: "18px 54px",
+    width: "none",
+  },
+  STRETCH_XS: {
+    padding: "4px 12px",
+    width: "100%",
   },
   STRETCH_SM: {
     padding: "8px 24px",
