@@ -1,6 +1,6 @@
-# Getting Started
+# View Online Mode
 
-This was my output to your ReactJS UI Test. [My ReactJS UI Test Output](https://github.com/facebook/create-react-app)
+This was my output to your ReactJS UI Test. [My ReactJS UI Test Output](https://reactjs-mads-output.herokuapp.com/)
 
 ## Available Scripts
 
@@ -10,7 +10,3 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-## View Online Mode
-
-[My ReactJS UI Test Output](https://facebook.github.io/create-react-app/docs/getting-started)
