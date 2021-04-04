@@ -1,42 +1,22 @@
-import React, { lazy, Suspense, useEffect } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import React, { Suspense } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { Preloader, PrivateRoute } from "./components";
+import { Preloader } from "./components";
 
-import { useDispatch } from "react-redux";
-import { login } from "./redux/actions/auth";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-import "./App.css";
-
-const LoginView = lazy(() => import("./pages/Login/LoginView"));
-const TodoView = lazy(() => import("./pages/Todo/TodoVIew"));
+import { Routes } from "./routes";
 
 function App() {
-  const dispatch = useDispatch();
-
-  const history = useHistory();
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      dispatch(login(JSON.parse(user)));
-
-      history.push("/todo");
-    }
-  }, []);
-
   return (
-    <Suspense fallback={<Preloader />}>
-      <Switch>
-        <Route path="/login" component={LoginView} />
-        <PrivateRoute path="/todo">
-          <TodoView />
-        </PrivateRoute>
-        <Route path="*">
-          <Redirect to="/login" />
-        </Route>
-      </Switch>
-    </Suspense>
+    <Provider store={store}>
+      <Router>
+        <Suspense fallback={<Preloader />}>
+          <Routes />
+        </Suspense>
+      </Router>
+    </Provider>
   );
 }
 
