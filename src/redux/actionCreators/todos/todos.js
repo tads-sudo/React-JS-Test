@@ -1,11 +1,16 @@
-import { ADD_TODO, DELETE_TODO } from "../../constants";
-import { v4 as uuidv4 } from "uuid";
+import { ADD_TODO, DELETE_TODO, SET_TODOS } from "../../constants";
 
-export const addTodo = (title) => ({
+export const addTodo = (todo) => ({
   type: ADD_TODO,
   payload: {
-    id: uuidv4(),
-    title,
+    todo,
+  },
+});
+
+export const setTodos = (todos) => ({
+  type: SET_TODOS,
+  payload: {
+    todos,
   },
 });
 
