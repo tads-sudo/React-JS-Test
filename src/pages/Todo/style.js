@@ -44,12 +44,6 @@ export const useStyles = createUseStyles({
     justifyContent: "space-between",
     padding: "0 5px",
     marginBottom: "8px",
-    "& button": {
-      display: "none",
-    },
-    "&:hover button": {
-      display: "flex",
-    },
   },
   todoText: {
     flex: 1,
@@ -86,6 +80,14 @@ export const useStyles = createUseStyles({
     container: {
       width: "40%",
       height: "80%",
+    },
+    todo: {
+      "& button": {
+        display: "none",
+      },
+      "&:hover button": {
+        display: "flex",
+      },
     },
   },
 });

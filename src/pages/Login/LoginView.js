@@ -1,8 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
-import { useStyles } from "./style";
-
 import {
   Layout,
   Textfield,
@@ -11,20 +8,16 @@ import {
   Button,
   Alert,
 } from "../../components";
-
+import { useStyles } from "./style";
 import { user } from "../../data";
-
 import { login } from "../../redux/actionCreators";
 import { useDispatch } from "react-redux";
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const Login = () => {
   const classes = useStyles();
-
   const dispatch = useDispatch();
-
   const history = useHistory();
 
   const initialValues = {
@@ -75,10 +68,6 @@ const Login = () => {
     validateOnChange: false,
   });
 
-  // console.log("Form Values", values);
-  // console.log("Form Errors", errors);
-  // console.log("Visited Fields", touched);
-
   return (
     <Layout>
       <div className={classes.form}>
@@ -107,7 +96,6 @@ const Login = () => {
             />
           </FormControlWrapper>
           <Button
-            // disabled={Object.entries(errors).length > 0}
             buttonType="FILL"
             corner="8"
             size="STRETCH_XL"
