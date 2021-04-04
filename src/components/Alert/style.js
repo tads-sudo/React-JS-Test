@@ -6,6 +6,7 @@ export const useStyles = createUseStyles({
     "& .MuiAlert-message": {
       display: "flex",
       flexDirection: "column",
+      fontSize: "12px",
     },
   },
 });
