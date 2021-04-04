@@ -1,9 +1,7 @@
 import React, { lazy, useEffect } from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
-import { login } from "../redux/actionCreators";
-
+import { login, setTodos } from "../redux/actionCreators";
 import { PrivateRoute } from "../components";
 
 const LoginView = lazy(() => import("../pages/Login/LoginView"));
@@ -16,10 +14,15 @@ export const Routes = () => {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
+    const todos = localStorage.getItem("todos");
     if (user) {
       dispatch(login(JSON.parse(user)));
 
       history.push("/todo");
+    }
+    if (todos) {
+      dispatch(setTodos(JSON.parse(todos)));
+      console.log(todos);
     }
   }, []);
 
