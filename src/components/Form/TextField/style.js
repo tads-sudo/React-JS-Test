@@ -1,5 +1,5 @@
 import { createUseStyles } from "react-jss";
-import { color, SCREEN_TABLET, SCREEN_DESKTOP } from "../../../theme";
+import { color } from "../../../theme";
 
 export const useStyles = createUseStyles({
   textField: {
@@ -30,16 +30,6 @@ export const useStyles = createUseStyles({
       "&.Mui-focused fieldset": {
         borderColor: color.PRIMARY,
       },
-    },
-  },
-  [`@media(min-width:${SCREEN_TABLET.MIN}px)`]: {
-    textField: {
-      width: "50vw",
-    },
-  },
-  [`@media(min-width:${SCREEN_DESKTOP.MIN}px)`]: {
-    textField: {
-      width: "25vw",
     },
   },
 });
