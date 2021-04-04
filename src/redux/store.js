@@ -1,8 +1,13 @@
-import { createStore, compose } from "redux";
-import { authReducer } from "./reducers/auth";
+import { createStore, compose, combineReducers } from "redux";
+import { authReducer, todoReducer } from "./reducers";
 
 const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(authReducer, storeEnhancers());
+const reducer = combineReducers({
+  auth: authReducer,
+  todos: todoReducer,
+});
+
+const store = createStore(reducer, storeEnhancers());
 
 export default store;

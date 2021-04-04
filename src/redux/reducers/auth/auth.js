@@ -1,20 +1,20 @@
-import * as types from "../constants/action-types";
+import { LOGIN, LOGOUT } from "../../constants";
 
 const initialState = {
-  data: null,
+  userData: null,
 };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.LOGIN:
+    case LOGIN:
       return {
         ...state,
-        data: action.payload,
+        userData: action.payload,
       };
-    case types.LOGOUT:
+    case LOGOUT:
       return {
         ...state,
-        data: null,
+        userData: null,
       };
     default:
       return state;

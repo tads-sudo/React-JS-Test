@@ -1,12 +1,12 @@
-import * as types from "../constants/action-types";
+import { LOGIN, LOGOUT } from "../../constants";
 
 export const login = (userdata) => {
   return {
-    type: types.LOGIN,
+    type: LOGIN,
     payload: userdata,
   };
 };
 
 export const logout = {
-  type: types.LOGOUT,
+  type: LOGOUT,
 };
