@@ -11,6 +11,7 @@ export const useStyles = createUseStyles({
   }) => ({
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
     fontSize: "16px",
     width: button_sizes[sizeProps].width,
     color: color[textColorProps],
