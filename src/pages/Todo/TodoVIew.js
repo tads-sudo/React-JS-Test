@@ -1,15 +1,12 @@
 import React, { useMemo } from "react";
 import { useHistory } from "react-router-dom";
-
-import { useStyles } from "./style";
-
 import { useDispatch, useSelector } from "react-redux";
-import { logout, addTodo, deleteTodo } from "../../redux/actionCreators";
-
-import { Layout, Button, Form, Textfield } from "../../components";
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { v4 as uuidv4 } from "uuid";
+import { useStyles } from "./style";
+import { logout, addTodo, deleteTodo } from "../../redux/actionCreators";
+import { Layout, Button, Form, Textfield } from "../../components";
 
 const TodoView = () => {
   const classes = useStyles();
@@ -35,7 +32,21 @@ const TodoView = () => {
   });
 
   const onSubmit = ({ todo }, helper) => {
-    dispatch(addTodo(todo));
+    const todoItem = {
+      id: uuidv4(),
+      title: todo,
+    };
+    dispatch(addTodo(todoItem));
+    localStorage.setItem(
+      "todos",
+      JSON.stringify({
+        ...todos.list,
+        [todoItem.id]: {
+          id: todoItem.id,
+          title: todoItem.title,
+        },
+      })
+    );
 
     helper.resetForm();
   };

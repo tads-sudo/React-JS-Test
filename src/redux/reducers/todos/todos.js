@@ -1,5 +1,4 @@
-import { ADD_TODO, DELETE_TODO } from "../../constants";
-// import { v4 as uuidv4 } from "uuid";
+import { ADD_TODO, DELETE_TODO, SET_TODOS } from "../../constants";
 
 let initialState = {
   list: {
@@ -33,11 +32,17 @@ export const todoReducer = (state = initialState, action) => {
         ...state,
         list: {
           ...state.list,
-          [action.payload.id]: {
-            id: action.payload.id,
-            title: action.payload.title,
+          [action.payload.todo.id]: {
+            id: action.payload.todo.id,
+            title: action.payload.todo.title,
           },
         },
+      };
+
+    case SET_TODOS:
+      return {
+        ...state,
+        list: action.payload.todos,
       };
 
     case DELETE_TODO:
