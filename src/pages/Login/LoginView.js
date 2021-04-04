@@ -1,4 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
+import { useStyles } from "./style";
 
 import {
   Layout,
@@ -11,14 +14,15 @@ import {
 
 import { user } from "../../data";
 
-import { login } from "../../redux/actions/auth";
+import { login } from "../../redux/actionCreators";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const Login = () => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -45,10 +49,10 @@ const Login = () => {
       values.username !== user.username ||
       values.password !== user.password
     ) {
-      return helpers.setErrors({ username: "Invalid username and password" });
+      return helpers.setErrors({ username: "Invalid username or password" });
     }
 
-    const modifiedUser = user;
+    const modifiedUser = { ...user };
     delete modifiedUser.password;
     localStorage.setItem("user", JSON.stringify(modifiedUser));
 
@@ -77,57 +81,59 @@ const Login = () => {
 
   return (
     <Layout>
-      <Form onSubmit={handleSubmit}>
-        <FormControlWrapper>
-          <Textfield
-            id="username"
-            label="Username"
-            name="username"
-            variant="outlined"
-            onChange={handleChange}
-            value={values.username}
-            onBlur={handleBlur}
-          />
-        </FormControlWrapper>
-        <FormControlWrapper>
-          <Textfield
-            id="password"
-            label="Password"
-            name="password"
-            type="password"
-            variant="outlined"
-            onChange={handleChange}
-            value={values.password}
-            onBlur={handleBlur}
-          />
-        </FormControlWrapper>
-        <Button
-          // disabled={Object.entries(errors).length > 0}
-          buttonType="FILL"
-          corner="8"
-          size="STRETCH_XL"
-          type="submit"
-          style={{ marginBottom: "24px" }}
-        >
-          Login
-        </Button>
-        {Object.entries(errors).map((error, errorIndex) => {
-          const [key, value] = error;
-          if (touched[key]) {
-            return (
-              <Alert
-                key={`error-${errorIndex}`}
-                icon={false}
-                variant="filled"
-                severity="error"
-              >
-                {value}
-              </Alert>
-            );
-          }
-          return null;
-        })}
-      </Form>
+      <div className={classes.form}>
+        <Form onSubmit={handleSubmit}>
+          <FormControlWrapper>
+            <Textfield
+              id="username"
+              label="Username"
+              name="username"
+              variant="outlined"
+              onChange={handleChange}
+              value={values.username}
+              onBlur={handleBlur}
+            />
+          </FormControlWrapper>
+          <FormControlWrapper>
+            <Textfield
+              id="password"
+              label="Password"
+              name="password"
+              type="password"
+              variant="outlined"
+              onChange={handleChange}
+              value={values.password}
+              onBlur={handleBlur}
+            />
+          </FormControlWrapper>
+          <Button
+            // disabled={Object.entries(errors).length > 0}
+            buttonType="FILL"
+            corner="8"
+            size="STRETCH_XL"
+            type="submit"
+            style={{ marginBottom: "24px" }}
+          >
+            Login
+          </Button>
+          {Object.entries(errors).map((error, errorIndex) => {
+            const [key, value] = error;
+            if (touched[key]) {
+              return (
+                <Alert
+                  key={`error-${errorIndex}`}
+                  icon={false}
+                  variant="filled"
+                  severity="error"
+                >
+                  {value}
+                </Alert>
+              );
+            }
+            return null;
+          })}
+        </Form>
+      </div>
     </Layout>
   );
 };
